@@ -6,6 +6,8 @@
 
 Automatically switch your Microsoft Teams status based on time of day and day of week. Never forget to set your status again with this intelligent userscript that runs in your browser.
 
+![MS Teams Auto Status UI Screenshot](Extras/v1.1.1_UI_Screenshot.png)
+
 ## 🚀 Installation
 
 ### Step 1: Install a Userscript Manager
