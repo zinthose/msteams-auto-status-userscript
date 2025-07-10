@@ -1,11 +1,15 @@
 // ==UserScript==
 // @name         MS Teams Auto Status
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
+// @version      1.1.1
 // @description  Automatically switch MS Teams status based on time of day and day of week
 // @author       Dane Jones
 // @match        https://teams.microsoft.com/v2/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=teams.microsoft.com
+// @updateURL    https://github.com/zinthose/msteams-auto-status-userscript/raw/main/msteams-auto-status.user.js
+// @downloadURL  https://github.com/zinthose/msteams-auto-status-userscript/raw/main/msteams-auto-status.user.js
+// @supportURL   https://github.com/zinthose/msteams-auto-status-userscript/issues
+// @homepageURL  https://github.com/zinthose/msteams-auto-status-userscript
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_addStyle
@@ -1239,9 +1243,34 @@
         }
     }
 
+    // ===== VERSION MANAGEMENT =====
+    function checkForUpdates() {
+        const currentVersion = '1.1.0';
+        const lastNotifiedVersion = GM_getValue('lastNotifiedVersion', '');
+        
+        if (lastNotifiedVersion !== currentVersion) {
+            log(`🎉 MS Teams Auto Status updated to v${currentVersion}`);
+            log('📝 Changelog: Added alert hiding functionality, enhanced UI, improved testing tools');
+            GM_setValue('lastNotifiedVersion', currentVersion);
+            
+            // Show update notification to user
+            if (lastNotifiedVersion && lastNotifiedVersion !== '') {
+                // Only show if this is an actual update, not first install
+                setTimeout(() => {
+                    if (confirm('MS Teams Auto Status has been updated! Click OK to see what\'s new.')) {
+                        window.open('https://github.com/zinthose/msteams-auto-status-userscript/releases', '_blank');
+                    }
+                }, 2000);
+            }
+        }
+    }
+
     // ===== MAIN EXECUTION =====
     function init() {
         log('MS Teams Auto Status script initialized');
+        
+        // Check for updates and show changelog
+        checkForUpdates();
         
         // Setup debugging and monitoring
         setupTrustedTypesMonitoring();
@@ -1307,6 +1336,9 @@
                     errorLog('Error in initial status check:', error);
                 }
             }, 5000);
+            
+            // Check for updates
+            checkForUpdates();
             
             log('Auto status monitoring started');
             

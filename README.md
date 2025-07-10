@@ -1,6 +1,6 @@
 # MS Teams Auto Status Userscript
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.1-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Web-orange.svg)
 
@@ -27,6 +27,8 @@ Automatically switch your Microsoft Teams status based on time of day and day of
 2. Click it to open the configuration panel
 3. Set up your schedules (see [Usage Examples](#-usage-examples) below)
 
+> **🔄 Auto-Updates**: The script will automatically update to the latest version. See [Automatic Updates](#-automatic-updates) section for details or to opt out.
+
 ## 🌟 Features
 
 - **⏰ Automatic Status Switching**: Set your status to change automatically based on schedules you define
@@ -37,6 +39,70 @@ Automatically switch your Microsoft Teams status based on time of day and day of
 - **🐛 Debug Mode**: Verbose logging for troubleshooting
 - **📊 Current Status Display**: See your current Teams status in real-time
 - **🔄 Real-time Updates**: Changes apply immediately without page refresh
+- **🔄 Automatic Updates**: Stay current with the latest features and bug fixes automatically
+
+## 🔄 Automatic Updates
+
+This userscript includes **automatic update functionality** to ensure you always have the latest features and bug fixes.
+
+### ✅ How Automatic Updates Work
+
+1. **Update Check**: Tampermonkey checks for updates every 24 hours
+2. **Source**: Updates are pulled directly from the GitHub repository
+3. **Notification**: You'll see a browser notification when updates are installed
+4. **Changelog**: After updates, you'll be prompted to view what's new
+
+### 🛡️ Update Safety
+
+- **Tested Code**: Only stable, tested versions are published to the main branch
+- **Version Tracking**: Each update includes version notes and changelog
+- **Rollback Option**: You can revert to previous versions if needed
+
+### ❌ How to Disable Automatic Updates
+
+If you prefer manual control over updates:
+
+#### Option 1: Disable in Tampermonkey (Recommended)
+
+1. Open **Tampermonkey Dashboard**
+2. Find **"MS Teams Auto Status"** in the list
+3. Click the **"Edit"** button
+4. Go to the **"Settings"** tab
+5. Set **"Check for updates"** to **"Never"**
+6. Click **"Save"**
+
+#### Option 2: Remove Update URLs from Script
+
+1. **Edit the script** in Tampermonkey
+2. **Delete or comment out** these lines:
+
+   ```javascript
+   // @updateURL    https://github.com/zinthose/msteams-auto-status-userscript/raw/main/msteams-auto-status.user.js
+   // @downloadURL  https://github.com/zinthose/msteams-auto-status-userscript/raw/main/msteams-auto-status.user.js
+   ```
+
+3. **Save the script**
+
+#### Option 3: Manual Update Process
+
+1. **Disable automatic updates** (using Option 1 or 2 above)
+2. **Check for updates manually** by visiting the [GitHub repository](https://github.com/zinthose/msteams-auto-status-userscript)
+3. **View the changelog** in the [Releases section](https://github.com/zinthose/msteams-auto-status-userscript/releases)
+4. **Update when ready** by copying the new script code
+
+### 📱 Update Notifications
+
+When the script updates, you'll see:
+
+- **Browser notification**: "MS Teams Auto Status has been updated!"
+- **Console message**: Shows the new version and changelog
+- **Optional popup**: Click "OK" to view detailed release notes
+
+To disable update notifications only (keep auto-updates):
+
+1. Edit the script in Tampermonkey
+2. Find the `checkForUpdates()` function
+3. Comment out or remove the `confirm()` popup section
 
 ## 📋 Requirements
 
@@ -175,7 +241,13 @@ userscript_MSTeams_autostatus/
 
 ## 📝 Changelog
 
-### v1.1.0 (Current)
+### v1.1.1 (Current)
+
+- ✅ Automatic update system with GitHub integration
+- ✅ Update notifications and changelog display
+- ✅ User-configurable update preferences
+
+### v1.1.0
 
 - ✅ Added alert hiding functionality
 - ✅ Enhanced testing interface with alert hiding test
